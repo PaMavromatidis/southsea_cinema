@@ -7,6 +7,14 @@ class MovieListing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    body: Container(
+      child: Column(
+        children: [
+          Text('Interstellar'),
+          Text('A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.',),
+       ],
+     ),
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text(appTitle, style: cinemaHeaderStyle),
