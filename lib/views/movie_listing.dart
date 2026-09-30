@@ -7,14 +7,6 @@ class MovieListing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    body: Container(
-      child: Column(
-        children: [
-          Text('Interstellar'),
-          Text('A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.',),
-       ],
-     ),
-    );
     return Scaffold(
       appBar: AppBar(
         title: const Text(appTitle, style: cinemaHeaderStyle),
@@ -23,7 +15,41 @@ class MovieListing extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const NavDrawer(),
-      body: const SizedBox.shrink(),
+      body: Container(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('INTERSTELLAR (2014) (12A)',style: TextStyle(fontSize: 28,),
+            ),
+            const SizedBox(height: 40),
+            const Text('A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.',style: TextStyle(fontSize: 18,),
+            ),
+            const SizedBox(height: 40),
+            const Text('Southsea Cinema Room',style: TextStyle(fontSize: 18,),
+            ),
+            const SizedBox(height: 20),
+            const Row(
+              children: [
+                Text('Thursday 22 Oct 2026, 18:00',style: TextStyle(fontSize: 18,),
+                ),
+                SizedBox(width: 10),
+                Text('- ends at 19:14',style: TextStyle(fontSize: 18,),
+                ),
+              ],
+            ),
+            const SizedBox(height: 40),
+            const Text ('Please notethat Discounts / Membership Benefits will be applied once you have selected your tickets',style: TextStyle(fontSize: 18,),
+            ),
+            const SizedBox(height: 20),
+            const Text ('Select Quantities (Up tp 5 in total)',style: TextStyle(fontSize: 18,),
+            ),
+            const SizedBox(height: 40),
+            const Text ('Tickets',style: TextStyle(fontSize: 24,),
+            ),
+          ],
+        ),
+      ),  
     );
   }
 }
