@@ -19,13 +19,13 @@ class MovieCard extends StatelessWidget {
             Image.asset(movie.posterImage, height: 250,),
 
             const SizedBox(height: 10),
-            Text(movie.title, style: cinemaHeaderStyle,),
+            Text(movie.title, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),
             const SizedBox(height: 5),
-            Text('Age Rating: ${movie.ageRating}'),
+            Text('Age Rating: ${movie.ageRating}', style: TextStyle(color: Colors.black),),
             const SizedBox(height: 10),
-            Text(movie.synopsis),
+            Text(movie.synopsis, style: TextStyle(color: Colors.black),),
             const SizedBox(height: 10),
-            Text('Screening Time: ${movie.screeningTime}'),
+            Text('Screening Time: ${movie.screeningTime}', style: TextStyle(color: Colors.black),),
             const SizedBox(height: 15),
 
             ElevatedButton(
