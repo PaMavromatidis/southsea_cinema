@@ -18,4 +18,6 @@ class Movie {
     required this.ticketPrice,
     required this.posterImage,
   });
+
+  String get formattedPrice => '£${ticketPrice.toStringAsFixed(2)}';
 }

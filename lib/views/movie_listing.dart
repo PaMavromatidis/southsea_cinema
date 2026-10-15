@@ -73,7 +73,7 @@ class _MovieListingState extends State<MovieListing> {
                       DropdownMenuEntry(value: 5, label: '5'),
                     ],
                   ),
-                  Text('  Adult (£${widget.movie.ticketPrice.toStringAsFixed(2)})', style: const TextStyle(fontSize: 18),
+                  Text('  Adult (${widget.movie.formattedPrice})', style: const TextStyle(fontSize: 18),
                   ),
                 ],
               ),
