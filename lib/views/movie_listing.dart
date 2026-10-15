@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
-import 'package:southsea_cinema/widgets/nav_drawer.dart';
 import 'package:southsea_cinema/models/movie.dart';
 
 class MovieListing extends StatefulWidget {
@@ -33,25 +32,39 @@ class _MovieListingState extends State<MovieListing> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('${widget.movie.title} (${widget.movie.ageRating})', style: const TextStyle(fontSize: 28),
+              Text(
+                '${widget.movie.title} (${widget.movie.ageRating})',
+                style: const TextStyle(fontSize: 28),
               ),
               const SizedBox(height: 40),
-              Text(widget.movie.synopsis, style: const TextStyle(fontSize: 18),
+              Text(
+                widget.movie.synopsis,
+                style: const TextStyle(fontSize: 18),
               ),
               const SizedBox(height: 40),
-              const Text('Southsea Cinema Room', style: TextStyle(fontSize: 18),
+              const Text(
+                'Southsea Cinema Room',
+                style: TextStyle(fontSize: 18),
               ),
               const SizedBox(height: 20),
-              Text('Screening Time: ${widget.movie.screeningTime}', style: const TextStyle(fontSize: 18),
+              Text(
+                'Screening Time: ${widget.movie.screeningTime}',
+                style: const TextStyle(fontSize: 18),
               ),
               const SizedBox(height: 40),
-              const Text('Please note that Discounts / Membership Benefits will be applied once you have selected your tickets', style: TextStyle(fontSize: 18),
+              const Text(
+                'Please note that Discounts / Membership Benefits will be applied once you have selected your tickets',
+                style: TextStyle(fontSize: 18),
               ),
               const SizedBox(height: 20),
-              const Text('Select Quantities (Up to 5 in total)', style: TextStyle(fontSize: 18),
+              const Text(
+                'Select Quantities (Up to 5 in total)',
+                style: TextStyle(fontSize: 18),
               ),
               const SizedBox(height: 40),
-              const Text('Tickets', style: TextStyle(fontSize: 24),
+              const Text(
+                'Tickets',
+                style: TextStyle(fontSize: 24),
               ),
               Row(
                 children: [
@@ -73,7 +86,9 @@ class _MovieListingState extends State<MovieListing> {
                       DropdownMenuEntry(value: 5, label: '5'),
                     ],
                   ),
-                  Text('  Adult (${widget.movie.formattedPrice})', style: const TextStyle(fontSize: 18),
+                  Text(
+                    '  Adult (${widget.movie.formattedPrice})',
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ],
               ),
@@ -88,7 +103,9 @@ class _MovieListingState extends State<MovieListing> {
                 child: const Text('Add to Order'),
               ),
               const SizedBox(height: 5),
-              Text(_bookingMessage, style: const TextStyle(fontSize: 18),
+              Text(
+                _bookingMessage,
+                style: const TextStyle(fontSize: 18),
               ),
             ],
           ),

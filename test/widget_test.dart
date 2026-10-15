@@ -6,20 +6,18 @@ import 'package:southsea_cinema/widgets/movie_card.dart';
 import 'package:southsea_cinema/constants.dart';
 
 void main() {
-
   group('Southsea Cinema widget tests', () {
-
-    testWidgets('App displays HomeView',
-        (WidgetTester tester) async {
-
+    testWidgets('App displays HomeView', (WidgetTester tester) async {
       await tester.pumpWidget(const SouthseaCinemaApp());
       expect(find.byType(HomeView), findsOneWidget);
-      expect(find.text(appTitle),findsOneWidget,);
+      expect(
+        find.text(appTitle),
+        findsOneWidget,
+      );
     });
 
     testWidgets('App displays movie cards and booking buttons',
         (WidgetTester tester) async {
-
       tester.view.physicalSize = const Size(1000, 2000);
       tester.view.devicePixelRatio = 1;
 
@@ -31,9 +29,6 @@ void main() {
       expect(find.text('Interstellar'), findsOneWidget);
       expect(find.text('The Wolf of Wall Street'), findsOneWidget);
       expect(find.text('Book Now'), findsNWidgets(2));
-
     });
-
   });
-
 }

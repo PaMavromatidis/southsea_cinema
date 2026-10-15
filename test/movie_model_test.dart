@@ -2,11 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/models/movie.dart';
 
 void main() {
-
   group('Movie model tests', () {
-
     test('Movie constructor assigns properties correctly', () {
-
       final movie = Movie(
         id: '1',
         title: 'Interstellar',
@@ -26,11 +23,9 @@ void main() {
       expect(movie.screeningTime, '18:00');
       expect(movie.ticketPrice, 10.00);
       expect(movie.posterImage, 'assets/images/interstellar.jpg');
-
     });
 
     test('formattedPrice displays whole-pound prices correctly', () {
-
       final movie = Movie(
         id: '1',
         title: 'Interstellar',
@@ -43,11 +38,9 @@ void main() {
       );
 
       expect(movie.formattedPrice, '£10.00');
-
     });
 
     test('formattedPrice displays prices with pence correctly', () {
-
       final movie = Movie(
         id: '2',
         title: 'The Wolf of Wall Street',
@@ -60,9 +53,6 @@ void main() {
       );
 
       expect(movie.formattedPrice, '£7.50');
-
     });
-
   });
-
 }

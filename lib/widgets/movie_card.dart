@@ -16,19 +16,34 @@ class MovieCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            Image.asset(movie.posterImage, height: 250,),
-
+            Image.asset(
+              movie.posterImage,
+              height: 250,
+            ),
             const SizedBox(height: 10),
-            Text(movie.title, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),
+            Text(
+              movie.title,
+              style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
+            ),
             const SizedBox(height: 5),
-            Text('Age Rating: ${movie.ageRating}', style: TextStyle(color: Colors.black),),
+            Text(
+              'Age Rating: ${movie.ageRating}',
+              style: TextStyle(color: Colors.black),
+            ),
             const SizedBox(height: 10),
-            Text(movie.synopsis, style: TextStyle(color: Colors.black),),
+            Text(
+              movie.synopsis,
+              style: TextStyle(color: Colors.black),
+            ),
             const SizedBox(height: 10),
-            Text('Screening Time: ${movie.screeningTime}', style: TextStyle(color: Colors.black),),
+            Text(
+              'Screening Time: ${movie.screeningTime}',
+              style: TextStyle(color: Colors.black),
+            ),
             const SizedBox(height: 15),
-
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -44,7 +59,9 @@ class MovieCard extends StatelessWidget {
                   borderRadius: BorderRadius.zero,
                 ),
               ),
-              child: const Text('Book Now',style: TextStyle(color: Colors.white),
+              child: const Text(
+                'Book Now',
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ],
