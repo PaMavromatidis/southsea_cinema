@@ -21,10 +21,7 @@ class _MovieListingState extends State<MovieListing> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(appTitle, style: cinemaHeaderStyle),
-        backgroundColor: cinemaSurface,
-        iconTheme: const IconThemeData(color: cinemaBrand),
-        elevation: 0,
+        title: const Text(appTitle),
       ),
       body: SingleChildScrollView(
         child: Container(
