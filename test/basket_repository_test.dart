@@ -31,6 +31,7 @@ void main() {
         ticketPrice: 9.00,
         posterImage: 'assets/images/matrix.jpg',
       );
+      basketRepository.clearBasket();
     });
 
     test('Adding items to the basket increases the total price', () {

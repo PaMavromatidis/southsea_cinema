@@ -42,7 +42,7 @@ void main() {
       expect(find.text('Screening Time: 18:00'), findsOneWidget);
     });
 
-    testWidgets('Add to Order displays a confirmation message',
+    testWidgets('Add to Order requires at least one ticket',
         (WidgetTester tester) async {
       await tester.pumpWidget(const SouthseaCinemaApp());
       await tester.tap(find.text('Book Now').first);
@@ -52,7 +52,7 @@ void main() {
       await tester.pump();
 
       expect(
-        find.text('0 tickets added to your order for Interstellar'),
+        find.text('Please select at least one ticket'),
         findsOneWidget,
       );
     });

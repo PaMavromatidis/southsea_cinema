@@ -1,6 +1,14 @@
 import 'package:southsea_cinema/models/basket_item.dart';
 
 class BasketRepository {
+  BasketRepository._internal();
+
+  static final BasketRepository _instance = BasketRepository._internal();
+
+  factory BasketRepository() {
+    return _instance;
+  }
+
   final List<BasketItem> _basketItems = [];
 
   List<BasketItem> get basketItems => List.unmodifiable(_basketItems);
