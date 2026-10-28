@@ -69,7 +69,7 @@ void main() {
       expect(basketRepository.totalPrice, 0.0);
     });
 
-    test ('Basket is initially empty', () {
+    test('Basket is initially empty', () {
       expect(basketRepository.basketItems.length, 0);
       expect(basketRepository.totalPrice, 0.0);
       expect(basketRepository.basketItems, isEmpty);

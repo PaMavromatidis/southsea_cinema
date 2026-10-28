@@ -4,10 +4,7 @@ class BasketItem {
   final Movie movie;
   final int quantity;
 
-  const BasketItem({
-    required this.movie, 
-    required this.quantity
-    });
+  const BasketItem({required this.movie, required this.quantity});
 
   double get totalPrice {
     return movie.ticketPrice * quantity;

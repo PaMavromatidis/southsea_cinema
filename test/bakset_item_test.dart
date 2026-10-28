@@ -3,8 +3,7 @@ import 'package:southsea_cinema/models/basket_item.dart';
 import 'package:southsea_cinema/models/movie.dart';
 
 void main() {
-
-  test ('BasketItem calculates total price correctly', () {
+  test('BasketItem calculates total price correctly', () {
     final movie = Movie(
       id: '1',
       title: 'Inception',
