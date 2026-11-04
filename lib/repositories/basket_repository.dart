@@ -21,11 +21,34 @@ class BasketRepository {
     _basketItems.remove(item);
   }
 
+  void updateQuantity(BasketItem item, int newQuantity) {
+    final index = _basketItems.indexOf(item);
+
+    if (index != -1 && newQuantity >= 1 && newQuantity <= 5) {
+      _basketItems[index] = BasketItem(
+        movie: item.movie,
+        quantity: newQuantity,
+      );
+    }
+  } 
+
   void clearBasket() {
     _basketItems.clear();
   }
 
   double get totalPrice {
     return _basketItems.fold(0.0, (sum, item) => sum + item.totalPrice);
+  }
+
+  double get serviceCharge {
+    if (_basketItems.isEmpty) {
+      return 0.0;
+    }
+
+    return 4.0;
+  }
+
+  double get totalDue {
+    return totalPrice + serviceCharge;
   }
 }
