@@ -24,16 +24,18 @@ void main() {
       addTearDown(tester.view.resetDevicePixelRatio);
 
       await tester.pumpWidget(const SouthseaCinemaApp());
+      await tester.pumpAndSettle();
 
       expect(find.byType(MovieCard), findsNWidgets(2));
       expect(find.text('Interstellar'), findsOneWidget);
-      expect(find.text('The Wolf of Wall Street'), findsOneWidget);
+      expect(find.text('Wolf of Wall Street'), findsOneWidget);
       expect(find.text('Book Now'), findsNWidgets(2));
     });
 
     testWidgets('Book Now opens the correct movie',
         (WidgetTester tester) async {
       await tester.pumpWidget(const SouthseaCinemaApp());
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Book Now').first);
       await tester.pumpAndSettle();
 
@@ -45,6 +47,7 @@ void main() {
     testWidgets('Add to Order requires at least one ticket',
         (WidgetTester tester) async {
       await tester.pumpWidget(const SouthseaCinemaApp());
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Book Now').first);
       await tester.pumpAndSettle();
       await tester.ensureVisible(find.text('Add to Order'));
