@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "title": "Interstellar",
+    "synopsis": "A team of astronauts travels through space to find a new home for humanity.",
+    "ageRating": "12A",
+    "runtime": "169 minutes",
+    "screeningTime": "18:00",
+    "ticketPrice": 10.00,
+    "posterImage": "assets/images/interstellar.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Wolf of Wall Street",
+    "synopsis": "The rise and fall of stockbroker Jordan Belfort, based on a true story.",
+    "ageRating": "18",
+    "runtime": "180 minutes",
+    "screeningTime": "20:30",
+    "ticketPrice": 12.00,
+    "posterImage": "assets/images/wolf_of_wall_street.jpg"
+  }
+]
