@@ -36,7 +36,12 @@ class _MovieListingState extends State<MovieListing> {
                 '${widget.movie.title} (${widget.movie.ageRating})',
                 style: const TextStyle(fontSize: 28),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 15),
+              Image.asset(
+                widget.movie.posterImage,
+                height: 400,
+              ),
+              const SizedBox(height: 30),             
               Text(
                 widget.movie.synopsis,
                 style: const TextStyle(fontSize: 18),
