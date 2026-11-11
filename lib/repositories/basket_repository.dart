@@ -30,7 +30,7 @@ class BasketRepository {
         quantity: newQuantity,
       );
     }
-  } 
+  }
 
   void clearBasket() {
     _basketItems.clear();

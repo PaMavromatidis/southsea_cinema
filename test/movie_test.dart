@@ -31,13 +31,12 @@ void main() {
     expect(movie.posterImage, 'assets/images/interstellar.jpg');
   });
 
-
-
   test('Movie.toJson converts a Movie to JSON', () {
     final Movie movie = Movie(
       id: '1',
       title: 'Wolf of Wall Street',
-      synopsis: 'The story of Jordan Belfort, a stockbroker who becomes wealthy through fraud and corruption.',
+      synopsis:
+          'The story of Jordan Belfort, a stockbroker who becomes wealthy through fraud and corruption.',
       ageRating: '18',
       runtime: '180 minutes',
       screeningTime: '20:30',
@@ -48,7 +47,8 @@ void main() {
     final Map<String, dynamic> json = movie.toJson();
 
     expect(json['title'], 'Wolf of Wall Street');
-    expect(json['synopsis'], 'The story of Jordan Belfort, a stockbroker who becomes wealthy through fraud and corruption.');
+    expect(json['synopsis'],
+        'The story of Jordan Belfort, a stockbroker who becomes wealthy through fraud and corruption.');
     expect(json['ageRating'], '18');
     expect(json['runtime'], '180 minutes');
     expect(json['screeningTime'], '20:30');

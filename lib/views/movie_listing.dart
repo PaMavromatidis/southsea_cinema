@@ -41,7 +41,7 @@ class _MovieListingState extends State<MovieListing> {
                 widget.movie.posterImage,
                 height: 400,
               ),
-              const SizedBox(height: 30),             
+              const SizedBox(height: 30),
               Text(
                 widget.movie.synopsis,
                 style: const TextStyle(fontSize: 18),
