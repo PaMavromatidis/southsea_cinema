@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:southsea_cinema/models/user_settings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -11,38 +11,54 @@ class SettingsView extends StatefulWidget {
 }
 
 class _SettingsViewState extends State<SettingsView> {
+  final SharedPreferencesAsync _prefs = SharedPreferencesAsync();
+
   late TextEditingController _addressController;
   late TextEditingController _emailController;
   late TextEditingController _patronNumberController;
   bool _emailPreferences = false;
 
   String _confirmationMessage = '';
-  UserSettings? _savedSettings;
 
-  void _saveSettings() {
+  Future<void> _loadPreferences() async {
+    final savedAddress = await _prefs.getString('customerAddress');
+    final savedEmail = await _prefs.getString('customerEmail');
+    final savedPatronNumber = await _prefs.getString('patronNumber');
+    final savedEmailNews = await _prefs.getBool('emailNews');
+
+    if (!mounted) return;
+
+    setState(() {
+      _addressController.text = savedAddress ?? '';
+      _emailController.text = savedEmail ?? '';
+      _patronNumberController.text = savedPatronNumber ?? '';
+      _emailPreferences = savedEmailNews ?? false;
+    });
+  }
+
+  Future<void> _saveSettings() async {
     final String address = _addressController.text.trim();
     final String email = _emailController.text.trim();
     final String patronNumber = _patronNumberController.text.trim();
 
-    final UserSettings newSettings = UserSettings(
-      address: address,
-      email: email,
-      patronNumber: patronNumber,
-      emailPreferences: _emailPreferences,
-    );
+    await _prefs.setString('customerAddress', address);
+    await _prefs.setString('customerEmail', email);
+    await _prefs.setString('patronNumber', patronNumber);
+    await _prefs.setBool('emailNews', _emailPreferences);
+
+    if (!mounted) return;
 
     setState(() {
-      _savedSettings = newSettings;
       _confirmationMessage = 'Settings saved successfully!';
     });
   }
 
-  void _cancelSettings() {
+  Future<void> _cancelSettings() async {
+    await _loadPreferences();
+
+    if (!mounted) return;
+
     setState(() {
-      _addressController.text = _savedSettings?.address ?? '';
-      _emailController.text = _savedSettings?.email ?? '';
-      _patronNumberController.text = _savedSettings?.patronNumber ?? '';
-      _emailPreferences = _savedSettings?.emailPreferences ?? false;
       _confirmationMessage = 'Changes canceled.';
     });
   }
@@ -53,6 +69,8 @@ class _SettingsViewState extends State<SettingsView> {
     _addressController = TextEditingController();
     _emailController = TextEditingController();
     _patronNumberController = TextEditingController();
+
+    _loadPreferences();
   }
 
   @override
