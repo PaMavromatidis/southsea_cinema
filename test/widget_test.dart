@@ -8,6 +8,10 @@ import 'package:southsea_cinema/views/movie_listing.dart';
 import 'package:southsea_cinema/views/basket_view.dart';
 import 'package:southsea_cinema/widgets/movie_card.dart';
 import 'package:southsea_cinema/repositories/basket_repository.dart';
+import 'package:shared_preferences_platform_interface/in_memory_shared_preferences_async.dart';
+import 'package:shared_preferences_platform_interface/shared_preferences_async_platform_interface.dart';
+import 'package:southsea_cinema/views/settings_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -15,6 +19,9 @@ void main() {
   setUp(() {
     rootBundle.evict('assets/data/movies.json');
     BasketRepository().clearBasket();
+
+    SharedPreferencesAsyncPlatform.instance =
+        InMemorySharedPreferencesAsync.empty();
   });
 
   Future<void> loadMovies(WidgetTester tester) async {
@@ -239,6 +246,130 @@ void main() {
 
       expect(
         find.text('Thank you! Your tickets have been purchased.'),
+        findsOneWidget,
+      );
+    });
+
+    testWidgets('SettingsView loads saved preferences', (
+      WidgetTester tester,
+    ) async {
+      SharedPreferencesAsyncPlatform.instance =
+          InMemorySharedPreferencesAsync.withData(<String, Object>{
+        'customerAddress': '25 High Street, Portsmouth',
+        'customerEmail': 'test@example.com',
+        'patronNumber': '12345',
+        'emailNews': true,
+      });
+
+      await tester.pumpWidget(
+        const MaterialApp(home: SettingsView()),
+      );
+
+      await tester.pumpAndSettle();
+      expect(
+        find.text('25 High Street, Portsmouth'),
+        findsOneWidget,
+      );
+
+      expect(
+        find.text('test@example.com'),
+        findsOneWidget,
+      );
+
+      expect(
+        find.text('12345'),
+        findsOneWidget,
+      );
+      final Switch emailSwitch = tester.widget<Switch>(
+        find.byType(Switch),
+      );
+
+      expect(emailSwitch.value, isTrue);
+    });
+
+    testWidgets('Saving edited settings updates preferences', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        const MaterialApp(home: SettingsView()),
+      );
+
+      await tester.pumpAndSettle();
+      final addressField = find.byType(TextField).at(0);
+      final emailField = find.byType(TextField).at(1);
+      final patronNumberField = find.byType(TextField).at(2);
+
+      await tester.enterText(
+        addressField,
+        'Guildhall, Portsmouth',
+      );
+
+      await tester.enterText(
+        emailField,
+        'student@example.com',
+      );
+
+      await tester.enterText(
+        patronNumberField,
+        '67890',
+      );
+
+      await tester.tap(find.byType(Switch));
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('SAVE SETTINGS'));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('SAVE SETTINGS'));
+      await tester.pumpAndSettle();
+
+      expect(
+        find.text('Settings saved successfully!'),
+        findsOneWidget,
+      );
+
+      final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+
+      expect(
+        await prefs.getString('customerAddress'),
+        'Guildhall, Portsmouth',
+      );
+
+      expect(
+        await prefs.getString('customerEmail'),
+        'student@example.com',
+      );
+
+      expect(
+        await prefs.getString('patronNumber'),
+        '67890',
+      );
+
+      expect(
+        await prefs.getBool('emailNews'),
+        isTrue,
+      );
+
+      await tester.pumpWidget(
+        const SizedBox.shrink(),
+      );
+      await tester.pumpWidget(
+        const MaterialApp(home: SettingsView()),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(
+        find.text('Guildhall, Portsmouth'),
+        findsOneWidget,
+      );
+
+      expect(
+        find.text('student@example.com'),
+        findsOneWidget,
+      );
+
+      expect(
+        find.text('67890'),
         findsOneWidget,
       );
     });
