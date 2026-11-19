@@ -14,6 +14,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: cinemaBrand,
         foregroundColor: Colors.white,
@@ -21,7 +22,6 @@ class PrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.zero,
         ),
       ),
-      onPressed: onPressed,
       child: Text(label),
     );
   }
