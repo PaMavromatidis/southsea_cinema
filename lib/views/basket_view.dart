@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:southsea_cinema/repositories/basket_repository.dart';
 import 'package:southsea_cinema/models/basket_item.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
+import 'package:southsea_cinema/widgets/primary_button.dart';
 
 class BasketView extends StatefulWidget {
   const BasketView({super.key});
@@ -168,13 +169,13 @@ class _BasketViewState extends State<BasketView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ElevatedButton(
+                          PrimaryButton(
+                            label: 'UPDATE ORDER',
                             onPressed: _updateOrder,
-                            child: const Text('UPDATE ORDER'),
                           ),
-                          ElevatedButton(
+                          PrimaryButton(
+                            label: 'BUY TICKETS',
                             onPressed: _buyTickets,
-                            child: const Text('BUY TICKETS'),
                           ),
                         ],
                       ),

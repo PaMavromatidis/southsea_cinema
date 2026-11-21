@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
+import 'package:southsea_cinema/widgets/primary_button.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -138,14 +139,14 @@ class _SettingsViewState extends State<SettingsView> {
                 ],
               ),
               const SizedBox(height: 16),
-              ElevatedButton(
+              PrimaryButton(
+                label: 'SAVE SETTINGS',
                 onPressed: _saveSettings,
-                child: const Text('SAVE SETTINGS'),
               ),
               const SizedBox(height: 16),
-              ElevatedButton(
+              PrimaryButton(
+                label: 'CANCEL',
                 onPressed: _cancelSettings,
-                child: const Text('CANCEL'),
               ),
               const SizedBox(height: 16),
               Text(
