@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/views/home_view.dart';
 import 'package:southsea_cinema/views/settings_view.dart';
@@ -27,7 +27,10 @@ class SouthseaCinemaApp extends StatelessWidget {
           backgroundColor: cinemaSurface,
           iconTheme: IconThemeData(color: cinemaBrand),
           titleTextStyle: cinemaHeaderStyle,
+          centerTitle: true,
           elevation: 0,
+          scrolledUnderElevation: 0,
+          surfaceTintColor: Colors.transparent,
         ),
       ),
       initialRoute: '/',
