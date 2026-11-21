@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
 import 'package:southsea_cinema/models/basket_item.dart';
 import 'package:southsea_cinema/repositories/basket_repository.dart';
+import 'package:southsea_cinema/widgets/nav_drawer.dart';
 
 class MovieListing extends StatefulWidget {
   final Movie movie;
@@ -26,6 +27,7 @@ class _MovieListingState extends State<MovieListing> {
       appBar: AppBar(
         title: const Text(appTitle),
       ),
+      drawer: const NavDrawer(),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(20.0),

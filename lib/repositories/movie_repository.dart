@@ -9,9 +9,11 @@ class MovieRepository {
 
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
 
-    final List<Movie> movies = jsonList
-        .map((item) => Movie.fromJson(item as Map<String, dynamic>))
-        .toList();
+    final List<Movie> movies = [];
+
+    for (final item in jsonList) {
+      movies.add(Movie.fromJson(item as Map<String, dynamic>));
+    }
 
     return movies;
   }

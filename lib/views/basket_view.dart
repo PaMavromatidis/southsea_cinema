@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:southsea_cinema/repositories/basket_repository.dart';
 import 'package:southsea_cinema/models/basket_item.dart';
+import 'package:southsea_cinema/widgets/nav_drawer.dart';
 
 class BasketView extends StatefulWidget {
   const BasketView({super.key});
@@ -44,6 +45,7 @@ class _BasketViewState extends State<BasketView> {
       appBar: AppBar(
         title: const Text('Basket'),
       ),
+      drawer: const NavDrawer(),
       body: basketItems.isEmpty
           ? Center(
               child: Column(

@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:southsea_cinema/widgets/nav_drawer.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -87,6 +88,7 @@ class _SettingsViewState extends State<SettingsView> {
         appBar: AppBar(
           title: const Text('Settings'),
         ),
+        drawer: const NavDrawer(),
         body: SingleChildScrollView(
             padding: const EdgeInsets.all(16.0),
             child:

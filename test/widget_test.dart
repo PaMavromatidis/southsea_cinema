@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/services.dart';
 import 'package:southsea_cinema/main.dart';
@@ -151,11 +151,7 @@ void main() {
       );
       expect(basketItems[0].totalPrice, 20.0);
 
-      await tester.pageBack();
-      await tester.pumpAndSettle();
-
-      expect(find.byType(HomeView), findsOneWidget);
-
+      expect(find.byTooltip('Open navigation menu'), findsOneWidget);
       await tester.tap(
         find.byTooltip('Open navigation menu'),
       );
@@ -165,6 +161,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(BasketView), findsOneWidget);
+      expect(find.byTooltip('Open navigation menu'), findsOneWidget);
 
       expect(
         find.textContaining('Interstellar'),
@@ -266,6 +263,7 @@ void main() {
       );
 
       await tester.pumpAndSettle();
+      expect(find.byTooltip('Open navigation menu'), findsOneWidget);
       expect(
         find.text('25 High Street, Portsmouth'),
         findsOneWidget,
