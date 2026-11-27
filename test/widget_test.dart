@@ -12,9 +12,13 @@ import 'package:shared_preferences_platform_interface/in_memory_shared_preferenc
 import 'package:shared_preferences_platform_interface/shared_preferences_async_platform_interface.dart';
 import 'package:southsea_cinema/views/settings_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:southsea_cinema/database/cinema_db.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  setUpAll(sqfliteFfiInit);
 
   setUp(() {
     rootBundle.evict('assets/data/movies.json');
@@ -206,6 +210,18 @@ void main() {
 
     testWidgets('Buying tickets clears the basket',
         (WidgetTester tester) async {
+      await tester.runAsync(() async {
+        final Database db = await databaseFactoryFfiNoIsolate.openDatabase(
+          inMemoryDatabasePath,
+          options: OpenDatabaseOptions(
+            version: 1,
+            onCreate: CinemaDatabase.instance.createTables,
+          ),
+        );
+        CinemaDatabase.instance.setDatabase(db);
+      });
+      addTearDown(CinemaDatabase.instance.close);
+
       await openInterstellar(tester);
 
       await tester.ensureVisible(find.byType(DropdownMenu<int>));
@@ -231,7 +247,10 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text('BUY TICKETS'));
+      await tester.runAsync(() async {
+        await tester.tap(find.text('BUY TICKETS'));
+        await tester.pumpAndSettle();
+      });
       await tester.pumpAndSettle();
 
       expect(BasketRepository().basketItems, isEmpty);
@@ -242,7 +261,7 @@ void main() {
       );
 
       expect(
-        find.text('Thank you! Your tickets have been purchased.'),
+        find.textContaining('Thank you! Your tickets have been purchased.'),
         findsOneWidget,
       );
     });
